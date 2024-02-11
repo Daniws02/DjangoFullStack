@@ -2,13 +2,12 @@
 
 {% block content %}
 <div>
-    <h1>Lista de Frutas</h1>
-    <ul>
-        {% for item in list %}
-            <li><a href="{% url 'read' item.id %}">{{ item.nome }}</a></li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'create' %}">Criar Nova Fruta</a>
+    <h1>Excluir Fruta: {{ fruta.nome }}</h1>
+    <p>Tem certeza de que deseja excluir "{{ fruta.nome }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar Exclusão</button>
+    </form>
 </div>
 
 {% endblock %}

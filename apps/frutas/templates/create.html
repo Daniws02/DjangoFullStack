@@ -2,13 +2,12 @@
 
 {% block content %}
 <div>
-    <h1>Lista de Frutas</h1>
-    <ul>
-        {% for item in list %}
-            <li><a href="{% url 'read' item.id %}">{{ item.nome }}</a></li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'create' %}">Criar Nova Fruta</a>
+    <h1>Criar Nova Fruta</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
 </div>
 
 {% endblock %}

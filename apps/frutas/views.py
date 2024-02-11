@@ -10,14 +10,14 @@ def create(request):
         form = FrutaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('listar_frutas')
+            return redirect('frutas')
     else:
         form = FrutaForm()
-    return render(request, 'frutas/criar_fruta.html', {'form': form})
+    return render(request, 'create.html', {'form': form})
 
 def read(request, id):
     fruta = get_object_or_404(Fruta, id=id)
-    return render(request, 'frutas/detalhar_fruta.html', {'fruta': fruta})
+    return render(request, 'read.html', {'item': fruta})
 
 def update(request, id):
     fruta = get_object_or_404(Fruta, id=id)
@@ -25,14 +25,14 @@ def update(request, id):
         form = FrutaForm(request.POST, instance=fruta)
         if form.is_valid():
             form.save()
-            return redirect('listar_frutas')
+            return redirect('frutas')
     else:
         form = FrutaForm(instance=fruta)
-    return render(request, 'frutas/atualizar_fruta.html', {'form': form})
+    return render(request, 'update.html', {'form': form})
 
 def delete(request, id):
     fruta = get_object_or_404(Fruta, id=id)
     if request.method == 'POST':
         fruta.delete()
-        return redirect('listar_frutas')
-    return render(request, 'frutas/excluir_fruta.html', {'fruta': fruta})
+        return redirect('frutas')
+    return render(request, 'delete.html', {'item': fruta})

@@ -2,13 +2,35 @@
 
 {% block content %}
 <div>
-    <h1>Lista de Frutas</h1>
-    <ul>
-        {% for item in list %}
-            <li><a href="{% url 'read' item.id %}">{{ item.nome }}</a></li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'create' %}">Criar Nova Fruta</a>
+    <header>
+        <h1>Lista de Frutas</h1>
+        <a href="{% url 'create' %}">Criar Nova Fruta</a>
+    </header>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Cor</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in list %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.nome }}</td>
+                <td>{{ item.cor }}</td>
+                <td>{{ item.preco }}</td>
+                <td>
+                    <a href="{% url 'read' item.id %}" class="btn btn-primary btn-sm">Visualizar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 </div>
 
 {% endblock %}
