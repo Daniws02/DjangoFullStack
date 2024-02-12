@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div>
+    <header>
+        <h1>Lista de Frutas</h1>
+        <a href="{% url 'create_frutas' %}">Criar Nova Fruta</a>
+    </header>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Cor</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in list %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.nome }}</td>
+                <td>{{ item.cor }}</td>
+                <td>{{ item.preco }}</td>
+                <td>
+                    <a href="{% url 'read_frutas' item.id %}" class="btn btn-primary btn-sm">Visualizar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}
